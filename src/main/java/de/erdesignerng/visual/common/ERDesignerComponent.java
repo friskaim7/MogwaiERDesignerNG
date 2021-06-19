@@ -356,6 +356,8 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         DefaultAction theSaveAsAction = new DefaultAction(
                 aEvent -> new SaveToFileCommand()
                         .executeSaveFileAs(), this, ERDesignerBundle.SAVEMODELAS);
+        theSaveAsAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+                .getKeyStroke("control shift S"));
 
         DefaultAction theSaveToRepository = new DefaultAction(
                 new SaveToRepositoryCommand(), this,
@@ -371,12 +373,16 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
 
         DefaultAction theNewAction = new DefaultAction(
                 e -> commandNew(), this, ERDesignerBundle.NEWMODEL);
+        theNewAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+                .getKeyStroke(KeyEvent.VK_N, KeyEvent.CTRL_DOWN_MASK));
 
         DefaultAction theLruAction = new DefaultAction(this,
                 ERDesignerBundle.RECENTLYUSEDFILES);
 
         DefaultAction theLoadAction = new DefaultAction(
                 new OpenFromFileCommand(), this, ERDesignerBundle.LOADMODEL);
+        theLoadAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+            .getKeyStroke(KeyEvent.VK_O, KeyEvent.CTRL_DOWN_MASK));
 
         handAction = new DefaultAction(
                 e -> {
@@ -423,6 +429,8 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         DefaultAction theDBConnectionAction = new DefaultAction(
                 new DBConnectionCommand(), this,
                 ERDesignerBundle.DBCONNECTION);
+        theDBConnectionAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+                .getKeyStroke(KeyEvent.VK_D, KeyEvent.CTRL_DOWN_MASK));
 
         DefaultAction theRepositoryConnectionAction = new DefaultAction(
                 new RepositoryConnectionCommand(), this,
@@ -438,9 +446,13 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
 
         zoomInAction = new DefaultAction(
                 e -> zoomIn(), this, ERDesignerBundle.ZOOMIN);
+        zoomInAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+                .getKeyStroke(KeyEvent.VK_EQUALS, KeyEvent.CTRL_DOWN_MASK));
 
         zoomOutAction = new DefaultAction(
                 e -> zoomOut(), this, ERDesignerBundle.ZOOMOUT);
+        zoomOutAction.putValue(DefaultAction.HOTKEY_KEY, KeyStroke
+                .getKeyStroke(KeyEvent.VK_MINUS, KeyEvent.CTRL_DOWN_MASK));
 
         DefaultAction theGenerateSQL = new DefaultAction(
                 new GenerateSQLCommand(), this,
@@ -753,10 +765,19 @@ public final class ERDesignerComponent implements ResourceHelperProvider {
         theToolBar.addSeparator();
 
         handButton = new DefaultToggleButton(handAction);
+        handButton.setMnemonic(KeyEvent.VK_H);
+
         relationButton = new DefaultToggleButton(relationAction);
+        relationButton.setMnemonic(KeyEvent.VK_R);
+
         entityButton = new DefaultToggleButton(entityAction);
+        entityButton.setMnemonic(KeyEvent.VK_E);
+
         commentButton = new DefaultToggleButton(commentAction);
+        commentButton.setMnemonic(KeyEvent.VK_C);
+        
         viewButton = new DefaultToggleButton(viewAction);
+        viewButton.setMnemonic(KeyEvent.VK_V);
 
         ButtonGroup theGroup = new ButtonGroup();
         theGroup.add(handButton);
